@@ -81,15 +81,6 @@ class _ListenLocationState extends State<ListenLocationWidget> {
                       print('JS로부터온 $result 메시지');
                       print('$lat,$lng');
                     });
-
-
-//                    JavascriptChannel(
-//                      name: 'jam',
-//                      //Js to flutter메시지 받기
-//                      onMessageReceived: (JavascriptMessage result) {
-//                        print('메시지: ${result.message}');
-//                      },
-//                    );
                 }
                   //여기까지
               });
@@ -100,10 +91,9 @@ class _ListenLocationState extends State<ListenLocationWidget> {
     );
   }
 
-  void gPSToggleStatus() {
-
+  bool gPSToggleStatus() {
     setState(() {
-      if(isGps){
+      if(isGps == true){
         _listenLocation();
       }
       else{
