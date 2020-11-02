@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jr_v1/GPS/listen_location.dart';
+import 'package:jr_v1/Util/stopwatch.dart';
 import 'package:jr_v1/menu.dart';
 import 'package:location/location.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -47,7 +48,6 @@ class _HomeAppState extends State<HomeApp> {
           CameraPosition(target: LatLng(l.latitude, l.longitude), zoom: 19),
         ),
       );
-      _points.add(_initialcameraposition);
       _points.add(LatLng(l.latitude, l.longitude));
       setState(() {
         _polylines.add(Polyline(
@@ -154,6 +154,7 @@ class _HomeAppState extends State<HomeApp> {
             //todo 폴리라인 만들기
             polylines: _polylines,
           ),
+          StopWatchUtil(),
           Positioned(
             //젠장 가운데로 맞춰줘야하는데... 젠장 이걸로 맞추는게 아닌데
             left: 5,
