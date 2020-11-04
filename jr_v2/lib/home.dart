@@ -39,6 +39,8 @@ class _HomeAppState extends State<HomeApp> {
   StreamSubscription<LocationData> _locationSubscription;
   Future<LocationData> _locationData;
   GoogleMapController _controller;
+  StopWatchUtil _stopWatchUtil = StopWatchUtil();
+
 
   Future<void> _onMapCreated(GoogleMapController _cntlr) async {
     _controller = _cntlr;
@@ -108,10 +110,12 @@ class _HomeAppState extends State<HomeApp> {
       if (isGps == true) {
         isGps = false;
         _stopListen(_controller);
+        _stopWatchUtil.startStopWatch();
       } else {
         isGps = true;
 //        _onMapCreated(_controller);
         _startListen(_controller);
+        _stopWatchUtil.stopStopWatch();
         //todo
       }
     });
@@ -147,16 +151,15 @@ class _HomeAppState extends State<HomeApp> {
             //todo 카메라 첫위치
             initialCameraPosition: CameraPosition(target: _initialcameraposition, zoom: 14),
             mapType: MapType.normal,
-            //todo 맵 만들어졌을 때 가장 먼저 될 함수
+            //todo init위치를 모바일에 있는 로케이션 불러오게 하기
             onMapCreated: _onMapCreated,
             myLocationButtonEnabled: false,
             myLocationEnabled: isGps,
-            //todo 폴리라인 만들기
             polylines: _polylines,
           ),
-          StopWatchUtil(),
+          Text(_stopWatchUtil.stoptimetodisplay),
           Positioned(
-            //젠장 가운데로 맞춰줘야하는데... 젠장 이걸로 맞추는게 아닌데
+            //todo 각각의 UI에 맞게 화면을 맞출 수 있도록 정수에서 반응형으로 변경시키기
             left: 5,
             bottom: 15,
             child: Container(
