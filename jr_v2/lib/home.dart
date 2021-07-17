@@ -133,65 +133,57 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.yellow[700],
-        title: Text(
-          'JooRun',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-        actions: <Widget>[
-          //ListenLocationWidget(),
-        ],
+        iconTheme: IconThemeData(color: Colors.blue),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: SafeArea(
-        child: Stack(children: <Widget>[
-          GoogleMap(
-            //todo 카메라 첫위치
-            initialCameraPosition: CameraPosition(target: _initialcameraposition, zoom: 14),
-            mapType: MapType.normal,
-            //todo init위치를 모바일에 있는 로케이션 불러오게 하기
-            onMapCreated: _onMapCreated,
-            myLocationButtonEnabled: false,
-            myLocationEnabled: isGps,
-            polylines: _polylines,
-          ),
-          Text(_stopWatchUtil.stoptimetodisplay),
-          Positioned(
-            //todo 각각의 UI에 맞게 화면을 맞출 수 있도록 정수에서 반응형으로 변경시키기
-            left: 5,
-            bottom: 15,
-            child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ButtonTheme(
-                      minWidth: 400,
-                      height: 200,
-                      buttonColor: Colors.yellow[700],
-                      child: RaisedButton(
-                        onPressed: () {
-                          Trackable();
-                        },
-                        child: Text(
-                          'Run',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 130,
-                          ),
+      body: Stack(children: <Widget>[
+        GoogleMap(
+          //todo 카메라 첫위치
+          initialCameraPosition: CameraPosition(target: _initialcameraposition, zoom: 14),
+          mapType: MapType.normal,
+          //todo init위치를 모바일에 있는 로케이션 불러오게 하기
+          onMapCreated: _onMapCreated,
+          myLocationButtonEnabled: false,
+          myLocationEnabled: isGps,
+          polylines: _polylines,
+        ),
+        Text(_stopWatchUtil.stoptimetodisplay),
+        Positioned(
+          //todo 각각의 UI에 맞게 화면을 맞출 수 있도록 정수에서 반응형으로 변경시키기
+          left: 5,
+          bottom: 15,
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ButtonTheme(
+                    minWidth: 400,
+                    height: 200,
+                    buttonColor: Colors.yellow[700],
+                    child: RaisedButton(
+                      onPressed: () {
+                        Trackable();
+                      },
+                      child: Text(
+                        'Run',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 130,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ]),
-      ),
+        ),
+      ]),
       drawer: Drawer(
         child: MenuList(),
       ),

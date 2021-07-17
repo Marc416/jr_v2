@@ -22,13 +22,14 @@ class _RunAppState extends State<RunApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/home',
-      routes: {
-        '/home':(context) => Home(),
-        '/menu':(context) => MenuList(),
-        '/record':(context) => Record(),
-      },
-      debugShowCheckedModeBanner: false,
+      home: Home(),
+      // initialRoute: '/home',
+      // routes: {
+      //   '/home':(context) => Home(),
+      //   '/menu':(context) => MenuList(),
+      //   '/record':(context) => Record(),
+      // },
+      debugShowCheckedModeBanner: true,
     );
   }
 }
